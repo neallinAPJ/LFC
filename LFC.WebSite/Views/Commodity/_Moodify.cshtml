@@ -1,0 +1,48 @@
+﻿@using LFC.Model.Commodity
+@model CommodityModel
+<form action="@Url.Action("Modified", "Commodity")" class="datagrid-edit-form" data-toggle="validate" data-data-type="jsonp">
+    <div class="bjui-row col-1">
+        <label class="row-label">商品类别</label>
+        <div class="row-input required">
+            <select name="Category" data-toggle="selectpicker" data-rule="required" data-width="100%">
+                <option value=""></option>
+                <option value="西服" selected="">西服</option>
+                <option value="裤子">裤子</option>
+                <option value="羽绒">羽绒</option>
+                <option value="牛仔">牛仔</option>
+            </select>
+        </div>
+        <label class="row-label">商品图片</label>
+        <div class="row-input">
+            <input type="file" data-name="filename" data-toggle="webuploader" data-options="
+                   {
+                       pick: {label: '点击选择图片' },
+                       server: '@Url.Action("ImageUpload","Upload")' ,
+                       fileNumLimit: 1,
+                       required: true,
+                       uploaded: '' ,
+                       basePath: '' ,
+                       accept: {
+                       title: '图片' ,
+                       extensions: 'jpg,png' ,
+                       mimeTypes: '.jpg,.png'
+                       }
+                   }">
+        </div>
+        <label class="row-label">商品链接</label>
+        <div class="row-input required">
+            <input type="text" name="Url" value="@Model.Url" data-rule="required">
+        </div>
+        <label class="row-label">商品名称</label>
+        <div class="row-input">
+            <input type="text" name="Name"  value="@Model.Name">
+        </div>
+        </div>
+        <button type="submit" class="btn-blue" style="float:right;">保存</button>
+</form>
+<script>
+    var sumitData = function () {
+
+
+    }
+</script>

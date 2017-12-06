@@ -1,0 +1,43 @@
+﻿@{
+    Layout = "";
+}
+<script src="~/other/ie10-viewport-bug-workaround.js"></script>
+<table id="commoditymodellist"></table>
+<script type="text/javascript">
+    $('#commoditymodellist').datagrid({
+        height: '100%',
+        gridTitle: '商品管理',
+        showToolbar: true,
+        toolbarItem: 'add,edit,del,|',
+        dataUrl: '/Commodity/GetCommodityList',
+        columns: [
+            { name: 'category', label: '类别', align: 'center' },
+            { name: 'imagedata', label: '图片', align: 'center' },
+            { name: 'name', label: '名称', align: 'center' },
+            { name: 'url', label: '链接', align: 'center'  },
+            { label: '操作列', render: datagrid_tree_operation, edit:false, align: 'center' },
+        ],
+        delUrl: '/Commodity/Delete',
+        delPK:'id',
+        jsonPrefix: 'obj',
+        editUrl: '/Commodity/Modify?id={id}',
+        editMode: { dialog: { width: '700', height: 400, title: '编辑商品信息', mask: true } },
+        paging: { pageSize: 50, pageCurrent: 10 },
+        tableWidth: '100%'
+    })
+    function datagrid_tree_operation(value) {
+        var html = '<button type="button" class="btn-green" data-toggle="edit.datagrid.tr">Copy</button>'
+            + '<button type="button" class="btn-red" data-toggle="del.datagrid.tr">删除</button>'
+
+        return html
+    }
+    function datagrid_image_operation(value) {
+        var html = '<button type="button" class="btn-green" data-toggle="edit.datagrid.tr">Copy</button>'
+            + '<button type="button" class="btn-red" data-toggle="del.datagrid.tr">删除</button>'
+
+        return html
+    }
+</script>
+
+
+

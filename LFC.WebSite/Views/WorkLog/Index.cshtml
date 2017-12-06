@@ -1,0 +1,31 @@
+﻿@{
+    Layout = "";
+}
+
+<table id="workloglist" >
+</table>
+<script type="text/javascript">
+    $('#workloglist').datagrid({
+        height: '100%',
+        gridTitle: '工作日志',
+        showToolbar: true,
+        toolbarItem: 'add, edit, cancel, save, del' ,
+        local: 'local',
+        dataUrl: '/worklog/GetWorkLogList',
+        columns: [
+            { name: 'title', label: '标题', align: 'center' },
+            { name: 'content', label: '内容' },
+            { name: 'projectName', label: '项目名称' },
+            { name: 'createDate', label: '创建时间', align: 'center', type: 'date', pattern: 'yyyy-MM-dd HH:mm',
+                render: function(value) {
+                    return value ? value.substr(0, 16) : value
+                } },
+            { name: 'createBy', label: '创建人', align: 'center' }
+        ],
+        editUrl: 'json/ajaxDone.json',
+        paging: { pageSize: 50, pageCurrent: 10 },
+        linenumberAll: true,
+        tableWidth: '100%',
+        noremove: false
+    })
+</script>
